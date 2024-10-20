@@ -1,4 +1,4 @@
-# Projektēšanas Laboratōrija - Basketbols.
+# Projektēšanas laboratorija - Basketbols.
 
 **projektēsanas laboratorijas grupas darbs par basketbola spēles rezultāta prognozēšanu.**
 
