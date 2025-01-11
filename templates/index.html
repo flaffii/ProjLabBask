@@ -4,10 +4,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poisson Distribution Prediction</title>
+    <title>BallerSoft</title>
 </head>
 <body>
-    <h1>Poisson Distribution Prediction</h1>
+    <h1>BallerSoft</h1>
     <form method="POST">
         <label for="first_team">Choose a first team:</label>
         <select name="first_team">
@@ -86,7 +86,6 @@
         <h2>Results:</h2>
         <p>Win Probability 1: {{ winProc1 }}%</p>
         <p>Win Probability 2: {{ winProc2 }}%</p>
-        <p>Tie Probability: {{ tie }}%</p>
     {% endif %}
 </body>
 </html>
