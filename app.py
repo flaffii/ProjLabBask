@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from math import exp, factorial
+from db_connect import get_team_data  # Import the function from db_connect
 
 app = Flask(__name__)
 
@@ -31,17 +32,34 @@ def makePredict(ATT1, DEF1, ATT2, DEF2, avg_goals):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        # Retrieve form data
-        ATT1 = float(request.form['ATT1'])
-        DEF1 = float(request.form['DEF1'])
-        ATT2 = float(request.form['ATT2'])
-        DEF2 = float(request.form['DEF2'])
-        avg_goals = float(request.form['avg_goals'])
+        # Retrieve form data for team names
+        team1 = request.form['team1']
+        team2 = request.form['team2']
+        avg_goals = float(request.form['avg_goals'])  
         
-        # Calculate predictions
-        winProc1, winProc2, tie = makePredict(ATT1, DEF1, ATT2, DEF2, avg_goals)
+        # Fetch data for the specified teams from the database
+        teams_data = get_team_data(team1, team2)
         
-        return render_template('index.html', winProc1=winProc1, winProc2=winProc2, tie=tie)
+        if teams_data and len(teams_data) == 2:
+            # Extract team data
+            team1_data = teams_data[0]
+            team2_data = teams_data[1]
+            
+            # Assign variables from database data for calculations
+            ATT1 = team1_data['ATT_Rating']
+            DEF1 = team1_data['DEF_Rating']
+            ATT2 = team2_data['ATT_Rating']
+            DEF2 = team2_data['DEF_Rating']
+            
+
+            # Calculate predictions
+            winProc1, winProc2, tie = makePredict(ATT1, DEF1, ATT2, DEF2, avg_goals)
+            
+            return render_template('index.html', team1=team1, team2=team2, winProc1=winProc1, winProc2=winProc2, tie=tie)
+        else:
+            # Handle case where team data isn't found
+            error_message = "One or both teams not found in the database."
+            return render_template('index.html', error_message=error_message, winProc1=None, winProc2=None, tie=None)
 
     return render_template('index.html', winProc1=None, winProc2=None, tie=None)
 

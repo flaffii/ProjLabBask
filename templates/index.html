@@ -7,18 +7,13 @@
 </head>
 <body>
     <h1>Poisson Distribution Prediction</h1>
+    
     <form method="POST">
-        <label for="ATT1">ATT1:</label>
-        <input type="number" step="0.01" name="ATT1" required><br><br>
+        <label for="team1">Team 1:</label>
+        <input type="text" name="team1" required><br><br>
         
-        <label for="DEF1">DEF1:</label>
-        <input type="number" step="0.01" name="DEF1" required><br><br>
-        
-        <label for="ATT2">ATT2:</label>
-        <input type="number" step="0.01" name="ATT2" required><br><br>
-        
-        <label for="DEF2">DEF2:</label>
-        <input type="number" step="0.01" name="DEF2" required><br><br>
+        <label for="team2">Team 2:</label>
+        <input type="text" name="team2" required><br><br>
         
         <label for="avg_goals">Average Goals:</label>
         <input type="number" step="0.01" name="avg_goals" required><br><br>
@@ -28,9 +23,12 @@
 
     {% if winProc1 is not none and winProc2 is not none and tie is not none %}
         <h2>Results:</h2>
-        <p>Win Probability 1: {{ winProc1 }}%</p>
-        <p>Win Probability 2: {{ winProc2 }}%</p>
+        <p>Win Probability for Team 1 ({{ team1 }}): {{ winProc1 }}%</p>
+        <p>Win Probability for Team 2 ({{ team2 }}): {{ winProc2 }}%</p>
         <p>Tie Probability: {{ tie }}%</p>
+    {% elif error_message %}
+        <h2>Error:</h2>
+        <p>{{ error_message }}</p>
     {% endif %}
 </body>
 </html>
