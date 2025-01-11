@@ -29,9 +29,9 @@ def makePredict(ATT1, DEF1, ATT2, DEF2):
 
     winProc1 = round(calculateWinProc(List1, List2), 2)
     winProc2 = round(calculateWinProc(List2, List1), 2)
-    tie = round(100 - winProc1 - winProc2, 5)
+    #tie = round(100 - winProc1 - winProc2, 5)
 
-    return winProc1, winProc2, tie
+    return winProc1, winProc2
 
 # Retrieve team data from database
 def findData(Komanda1, Komanda2):
@@ -51,8 +51,8 @@ def home():
         if team1 and team2:
             try:
                 ATT1, DEF1, ATT2, DEF2 = findData(team1, team2)
-                win1, win2, tie = makePredict(ATT1, DEF1, ATT2, DEF2)
-                return render_template("index.html", first_team=team1, second_team=team2, winProc1=win1, winProc2=win2, tie=tie)
+                win1, win2 = makePredict(ATT1, DEF1, ATT2, DEF2)
+                return render_template("index.html", first_team=team1, second_team=team2, winProc1=win1, winProc2=win2)
             except ValueError as e:
                 return render_template("index.html", error=str(e))
     return render_template("index.html")
