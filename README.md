@@ -70,6 +70,8 @@ Konceptuālajā modelī ir divas galvenās tabulas:
 
 Šis modelis nodrošina prognožu ģenerēšanu, izmantojot vēsturiskos datus.
 
+![teksts attēlam](image.png)
+
 ---
 
 ## Novērtējums
