@@ -55,7 +55,7 @@ END PREDICTION
 ```
 **Blokshēma**
 
-![Alt teksts attēlam](Picture1.png)
+![teksts attēlam](Picture1.png)
 
 ---
 
@@ -97,4 +97,6 @@ Konceptuālajā modelī ir divas galvenās tabulas:
 | 6   | 2362            | Denver Nuggets   | 45.84%           |
 
 ---
+### Plakāts
 
+![teksts attēlam](Baller.jpg)
